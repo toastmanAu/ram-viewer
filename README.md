@@ -106,6 +106,46 @@ See [FiberQuest repo](https://github.com/toastmanAu/fiberquest) for integration.
 - `{"event":"log","type":"info","message":"…"}`
 - `{"event":"ram","address":"0x0529","label":"Banana Counter","value":84}`
 
+## RAM Watcher — Local AI Event Logger
+
+`ram-watcher.js` connects to the RAM viewer, watches for changes, and uses **local Ollama inference** to interpret events. Zero API cost.
+
+### Known game mode
+```bash
+# Interprets events from verified game JSON
+node ram-watcher.js --game dkc --host 192.168.68.73
+# → [EVENT] Player collected a banana (84→85)
+# → [EVENT] Player lost a life (3→2)
+```
+
+### Discovery mode — map new games
+```bash
+# Scans all RAM, LLM labels changing addresses
+node ram-watcher.js --discover --game-name "Street Fighter 2" --host 192.168.68.73
+```
+1. Play the game — deliberately trigger events (score, lose life, pick up items)
+2. Every 5 seconds the LLM analyses changes and suggests labels
+3. On Ctrl+C → exports `games/<name>-candidate.json` with LLM-suggested labels
+4. Review, edit, rename, submit PR
+
+### Options
+```
+--game <id>          Use existing game JSON
+--discover           Discovery mode (scan all RAM)
+--game-name <name>   Game hint for LLM in discovery mode
+--scan-start <hex>   Start of scan range (default 0x0000)
+--scan-end <hex>     End of scan range (default 0x1FFF)
+--local              Use localhost as RetroArch host
+--host <ip>          RetroArch IP (default 192.168.68.73)
+--ollama <url>       Ollama URL (default http://192.168.68.88:11434)
+--model <name>       Model (default qwen2.5:14b)
+--output <file>      Event log (default events-YYYY-MM-DD.jsonl)
+```
+
+### Requirements
+- [Ollama](https://ollama.ai) running locally with `qwen2.5:14b` (or any model)
+- RetroArch with `network_cmd_enable = "true"`
+
 ## Development
 
 ```bash
