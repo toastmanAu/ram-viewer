@@ -12,9 +12,9 @@
  *   --game-name <name>   Game name hint for LLM in discovery mode
  *   --scan-start <hex>   Start address for discovery scan (default: 0x0000)
  *   --scan-end <hex>     End address for discovery scan (default: 0x1FFF, 8KB)
- *   --host <ip>          RetroArch host (default: 192.168.68.73)
+ *   --host <ip>          RetroArch host (default: 127.0.0.1)
  *   --port <n>           RetroArch UDP port (default: 55355)
- *   --ollama <url>       Ollama base URL (default: http://192.168.68.88:11434)
+ *   --ollama <url>       Ollama base URL (default: http://localhost:11434)
  *   --model <name>       Ollama model (default: qwen2.5:14b)
  *   --output <file>      Event log output file (default: events-YYYY-MM-DD.jsonl)
  *   --local              Use localhost as RetroArch host
@@ -44,9 +44,9 @@ const DISCOVER     = flag('--discover');
 const GAME_NAME    = arg('--game-name', GAME_ID || 'Unknown Game');
 const SCAN_START   = parseInt(arg('--scan-start', '0x0000'), 16);
 const SCAN_END     = parseInt(arg('--scan-end', '0x1FFF'), 16);
-const HOST         = flag('--local') ? '127.0.0.1' : arg('--host', '192.168.68.73');
+const HOST         = flag('--local') ? '127.0.0.1' : arg('--host', '127.0.0.1');
 const PORT         = parseInt(arg('--port', '55355'));
-const OLLAMA_URL   = arg('--ollama', 'http://192.168.68.88:11434');
+const OLLAMA_URL   = arg('--ollama', 'http://localhost:11434');
 const MODEL        = arg('--model', 'qwen2.5:14b');
 const INTERVAL_MS  = parseInt(arg('--interval', '500'));
 const LLM_INTERVAL = parseInt(arg('--llm-interval', '5000'));

@@ -34,7 +34,7 @@ const udpClient = dgram.createSocket('udp4');
 udpClient.bind(); // bind to random local port
 
 // Helper: send UDP command, return promise
-function sendUdpCommand(command, host = '192.168.68.73', port = 55355) {
+function sendUdpCommand(command, host = '127.0.0.1', port = 55355) {
   return new Promise((resolve, reject) => {
     const buffer = Buffer.from(command + '\n');
     udpClient.send(buffer, port, host, (err) => {
@@ -150,7 +150,7 @@ wss.on('connection', (ws, req) => {
           }
           break;
         case 'start':
-          startPolling(clientId, msg.game, msg.host || '192.168.68.73', msg.port || 55355, msg.interval || 200);
+          startPolling(clientId, msg.game, msg.host || '127.0.0.1', msg.port || 55355, msg.interval || 200);
           ws.send(JSON.stringify({ event: 'started', clientId }));
           break;
         case 'stop':

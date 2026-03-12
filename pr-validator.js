@@ -11,7 +11,7 @@
  *
  * Env vars:
  *   GITHUB_TOKEN    — PAT with repo:write + PR comment scope
- *   OLLAMA_URL      — default http://192.168.68.88:11434
+ *   OLLAMA_URL      — default http://localhost:11434
  *   OLLAMA_MODEL    — default qwen2.5:14b
  */
 
@@ -23,7 +23,7 @@ const http  = require('http');
 const DRY_RUN     = process.argv.includes('--dry-run');
 const OWNER       = 'toastmanAu';
 const REPO        = 'ram-viewer';
-const OLLAMA_URL  = process.env.OLLAMA_URL  || 'http://192.168.68.88:11434';
+const OLLAMA_URL  = process.env.OLLAMA_URL  || 'http://localhost:11434';
 const MODEL       = process.env.OLLAMA_MODEL || 'qwen2.5:14b';
 const GH_TOKEN    = process.env.GITHUB_TOKEN;
 const BOT_MARKER  = '<!-- fiberquest-validator -->';

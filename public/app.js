@@ -23,7 +23,7 @@ localToggle.addEventListener('change', () => {
     ipInput.value = '127.0.0.1';
     ipInput.disabled = true;
   } else {
-    ipInput.value = '192.168.68.73';
+    ipInput.value = '';
     ipInput.disabled = false;
   }
 });
