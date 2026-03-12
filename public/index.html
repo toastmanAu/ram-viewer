@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAM Viewer — RetroArch UDP Polling</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>RAM Viewer 🕹️</h1>
+      <p>Live polling of RetroArch RAM addresses via UDP. Connect, select game, start polling.</p>
+    </header>
+
+    <section class="settings">
+      <h2>Settings</h2>
+      <div class="row">
+        <label>Target:</label>
+        <input type="checkbox" id="local-toggle">
+        <label for="local-toggle">Local RetroArch (localhost)</label>
+      </div>
+      <div class="row">
+        <label>IP Address:</label>
+        <input type="text" id="ip" value="192.168.68.73" placeholder="RetroArch host IP">
+        <label>Port:</label>
+        <input type="number" id="port" value="55355">
+        <button id="test-btn">Test Connection</button>
+        <span id="test-result"></span>
+      </div>
+      <div class="row">
+        <label>Game:</label>
+        <select id="game-select">
+          <option value="">— select a game —</option>
+        </select>
+      </div>
+      <div class="row">
+        <button id="start-btn" disabled>Start Polling</button>
+        <button id="stop-btn" disabled>Stop Polling</button>
+      </div>
+    </section>
+
+    <section class="console">
+      <h2>
+        Console
+        <button id="copy-btn" title="Copy console as text">📋 Copy</button>
+        <button id="save-btn" title="Save console as .txt">💾 Save</button>
+      </h2>
+      <div id="console-log"></div>
+    </section>
+
+    <section class="ram-view">
+      <h2>RAM Addresses</h2>
+      <div id="ram-table"></div>
+    </section>
+
+    <footer>
+      <p>Game JSON files: <code>ram‑viewer/games/</code>. UDP commands: <code>READ_CORE_RAM</code>, <code>WRITE_CORE_RAM</code>, <code>GET_STATUS</code>.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

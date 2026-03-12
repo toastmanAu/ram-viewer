@@ -1,0 +1,18 @@
+{
+  "name": "Donkey Kong Country (SNES)",
+  "console": "SNES",
+  "core": "snes9x",
+  "romCRC": "AAE679E5",
+  "addresses": [
+    {
+      "address": "0x0529",
+      "label": "Banana Counter",
+      "description": "In-level banana count (0–99)"
+    },
+    {
+      "address": "0x0575",
+      "label": "Lives",
+      "description": "Player lives count"
+    }
+  ]
+}
